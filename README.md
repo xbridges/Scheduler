@@ -2,6 +2,7 @@
 Scheduler to start on time.
 
 ## usage
+  ```
   scheduler, nexttime := NewScheduler(Interval, Offset)
   
   break timeticker:
@@ -22,3 +23,4 @@ Scheduler to start on time.
           }
       }
   }()
+  ```
