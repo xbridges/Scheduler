@@ -6,8 +6,8 @@ A scheduler that runs at "0:00,  0:30... minutes per hour" required for resident
   ```
   scheduler, nexttime := NewScheduler(Interval, Offset)
   
-  break timeticker:
   go func(){
+      break timeticker:
       for {
           select {
           case <-s.C:
