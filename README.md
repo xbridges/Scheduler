@@ -11,7 +11,7 @@
   go func(){
       break timeticker:
       for {
-      i := 0
+          i := 0
           select {
           case <-scheduler.C:
               scheduler.Stop() // stop before hevy something.
@@ -24,6 +24,7 @@
                   scheduler.Close()
               }
               fmt.Printf("next-> %v\n", n)
+              i++
           case <-scheduler.Done:
               fmt.Println("break loop.")
               wg.Done()
