@@ -1,5 +1,6 @@
 # scheduler
 Scheduler to start on time.
+A scheduler that runs at "0:00,  0:30... minutes per hour" required for resident programs.
 
 ## usage
   ```
