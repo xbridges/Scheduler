@@ -1,27 +1,36 @@
 # scheduler
-Scheduler to start on time.
-A scheduler that runs at "0:00,  0:30... minutes per hour" required for resident programs.
+  Scheduler to start on time.
+  A scheduler that runs at "0:00,  0:30... minutes per hour" required for resident programs.
 
 ## usage
   ```
-  scheduler, nexttime := NewScheduler(Interval, Offset)
+  scheduler, nexttime := NewScheduler(10, 0)
   
+  wg := sync.WaitGroup{}
+  wg.Add(1)
   go func(){
       break timeticker:
       for {
+      i := 0
           select {
-          case <-s.C:
-              s.Stop() // stop before hevy something.
+          case <-scheduler.C:
+              scheduler.Stop() // stop before hevy something.
               func() {
                   fmt.Printf("tick=%v\n", time.Now())
               }
-              n = s.Reset() // restart scheduler
+              if i < 100 {
+                  n = scheduler.Reset() // restart scheduler
+              } else {
+                  scheduler.Close()
+              }
               fmt.Printf("next-> %v\n", n)
-          case <-s.Done:
+          case <-scheduler.Done:
               fmt.Println("break loop.")
               wg.Done()
               break timeticker
           }
       }
   }()
+  wg.Wait()
+  
   ```
