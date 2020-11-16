@@ -28,9 +28,9 @@ func TestCreateAndGo(t *testing.T) {
 				case <-s.C:
 					s.Stop() // stop before hevy something.
 					f()
-					if i >= 100 {
+					if i >= 3 {
 						fmt.Println("call close.")
-						close(s.Done)
+						s.Close()
 						fmt.Println("closed")
 					}
 					i++
